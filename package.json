@@ -26,7 +26,8 @@
     "backend"
   ],
   "bundledDeps": [
-    "clever-orm"
+    "clever-orm",
+    "clever-auth"
   ],
   "main": "module.js",
   "devDependencies": {

@@ -76,6 +76,25 @@ function installORM () {
     return defered.promise;
 }
 
+function installAuth () {
+    var defered = Q.defer()
+      , proc = spawn ( 'clever', [ 'install', 'clever-auth' ], { cwd: path.join( __dirname, '../', prName ) } );
+
+    console.log( 'step #2.1 - install clever-auth module - begin\n' );
+
+    proc.stderr.on('data', function (data) {
+        console.log( 'Error in step #2.1 - ' + data.toString() + '\n');
+        defered.reject ( data.toString() );
+    });
+
+    proc.on('close', function (code) {
+        console.log('step #2.1 process exited with code ' + code + '\n' );
+        defered.resolve();
+    });
+
+    return defered.promise;
+}
+
 //copy module in test project
 function copyModule () {
     var defered = Q.defer()
@@ -239,6 +258,7 @@ function bundled(  ) {
 
 createProject (  )
     .then ( installORM )
+    .then ( installAuth )
     .then ( copyModule )
     .then ( configFiles )
     .then ( bundled )

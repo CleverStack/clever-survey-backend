@@ -2,7 +2,7 @@ var expect = require ( 'chai' ).expect
   , request = require ( 'supertest' )
   , path = require( 'path' )
   , app = require ( path.resolve( __dirname + '/../../../../' ) + '/index.js' );
-console.dir(app)
+
 describe ( '/modules_survey', function () {
     describe ( 'POST /modules_survey', function () {
         it ( 'should return valid status', function ( done ) {

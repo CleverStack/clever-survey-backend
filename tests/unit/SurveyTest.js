@@ -34,6 +34,9 @@ describe ( 'controllers.SurveyController', function () {
 
     describe ( '.postAction()', function () {
         it ( 'should call .send() with valid status', function ( done ) {
+            ctrl.req.user = { id: 1 };
+            ctrl.req.params = { id: 1 };
+
             ctrl.send = function ( data ) {
                 Service.findAll()
                     .then(function ( examples ) {
@@ -52,6 +55,9 @@ describe ( 'controllers.SurveyController', function () {
 
     describe ( '.listAction()', function () {
         it ( 'should call .send() with valid status', function ( done ) {
+            ctrl.req.user = { id: 1 };
+            ctrl.req.params = { id: 1 };
+
             ctrl.send = function ( data ) {
                 data.should.have.length( 1 );
                 data[ 0 ].name.should.equal( 'ModulesSurvey 1' );
@@ -63,7 +69,9 @@ describe ( 'controllers.SurveyController', function () {
 
     describe ( '.getAction()', function () {
         it ( 'should call .send() with valid status', function ( done ) {
-            ctrl.req.params.id = 1;
+            ctrl.req.user = { id: 1 };
+            ctrl.req.params = { id: 1 };
+
             ctrl.send = function ( data ) {
                 data.id.should.equal( 1 );
                 data.name.should.equal( 'ModulesSurvey 1' );
@@ -75,7 +83,9 @@ describe ( 'controllers.SurveyController', function () {
 
     describe ( '.putAction()', function () {
         it ( 'should call .send() with valid status', function ( done ) {
-            ctrl.req.params.id = 1;
+            ctrl.req.user = { id: 1 };
+            ctrl.req.params = { id: 1 };
+
             ctrl.send = function ( data ) {
                 data.id.should.equal( 1 );
                 data.name.should.equal( 'ModulesSurvey Updated' );
@@ -90,25 +100,14 @@ describe ( 'controllers.SurveyController', function () {
 
     describe ( '.deleteAction()', function () {
         it ( 'should call .send() with valid status', function ( done ) {
-            ctrl.req.params.id = 1;
+            ctrl.req.user = { id: 1 };
+            ctrl.req.params = { id: 1 };
+
             ctrl.send = function ( data ) {
                 expect( data ).to.eql ( undefined );
                 done();
             };
             ctrl.deleteAction();
-        } );
-    } );
-
-    describe ( '.customAction()', function () {
-        it ( 'should call .send() with valid arguments', function ( done ) {
-            ctrl.send = function ( data ) {
-                expect( data ).to.eql ( {
-                    message: 'Hello from customAction inside SurveyController'
-                } );
-
-                done ();
-            };
-            ctrl.customAction();
         } );
     } );
 });
