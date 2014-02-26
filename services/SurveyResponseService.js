@@ -3,7 +3,7 @@ var Q = require('q')
   , _ = require('underscore')
   , SurveyResponseService;
 
-module.exports = function( sequelize, ORMSurveyResponseModel, AccountModel, ORMSurveyModel, ORMSurveyQuestionModel, ORMSurveyResponseAnswerModel ) {
+module.exports = function( sequelize, ORMSurveyResponseModel, ORMSurveyModel, ORMSurveyQuestionModel, ORMSurveyResponseAnswerModel ) {
   if (SurveyResponseService && SurveyResponseService.instance) {
     return SurveyResponseService.instance;
   }
@@ -50,7 +50,7 @@ module.exports = function( sequelize, ORMSurveyResponseModel, AccountModel, ORMS
       getSurveyResponseByToken: function( tkn ) {
           var deferred = Q.defer();
 
-          this.findOne({ where: { token: tkn }, include: [ AccountModel, SurveyModel ] })
+          this.findOne({ where: { token: tkn }, include: [ SurveyModel ] })
               .then(function( surveyResponse ) {
 
                   if ( !surveyResponse ) {
@@ -168,7 +168,7 @@ module.exports = function( sequelize, ORMSurveyResponseModel, AccountModel, ORMS
 
           this.find({
               where: { AccountId: accId, ResponseId: responseId },
-              include: [ AccountModel, SurveyModel ]
+              include: [ SurveyModel ]
           })
           .then(function( surveyResponse ) {
 
