@@ -8,7 +8,7 @@ module.exports = function( sequelize, ORMSurveyResponseModel, ORMSurveyModel, OR
     return SurveyResponseService.instance;
   }
 
-  SurveyResponseService = BaseService.extend({
+  SurveyResponseService = require( 'services' ).BaseService.extend( {
       formatData: function( data, operation ) {
           var d = {};
           d['pointsAwarded'] = data.pointsAwarded  || null;
