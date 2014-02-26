@@ -1,7 +1,11 @@
 {
   "name": "clever-survey",
   "version": "0.0.1",
-  "dependencies": {},
+  "dependencies": {
+    "underscore": "^1.6.0",
+    "q": "^1.0.0",
+    "shortid": "^2.0.0"
+  },
   "author": {
     "name": "Clevertech",
     "email": "info@clevertech.biz",
