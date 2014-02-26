@@ -283,7 +283,7 @@ module.exports = function( sequelize, ORMSurveyResponseModel, ORMSurveyModel, OR
           var deferred = Q.defer()
             , sts = ( isRateUncomplete ) ? 'Completed - Incomplete grading': "Completed";
 
-          SurveyResponseModel
+          ORMSurveyResponseModel
           .update({ status: sts },{ id: srvId })
           .success( function() {
               deferred.resolve( sts );
