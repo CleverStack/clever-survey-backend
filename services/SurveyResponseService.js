@@ -330,7 +330,7 @@ module.exports = function( sequelize, ORMSurveyResponseModel, ORMSurveyModel, OR
   });
 
   SurveyResponseService.instance = new SurveyResponseService(sequelize);
-  SurveyResponseService.Model = SurveyResponseModel;
+  SurveyResponseService.Model = ORMSurveyResponseModel;
 
   return SurveyResponseService.instance;
 };
