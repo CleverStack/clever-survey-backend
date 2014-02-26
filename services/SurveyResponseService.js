@@ -1,6 +1,7 @@
 var Q = require('q')
   , shortId = require('shortid')
   , _ = require('underscore')
+  , Sequelize = require( 'sequelize' )
   , SurveyResponseService;
 
 module.exports = function( sequelize, ORMSurveyResponseModel, ORMSurveyModel, ORMSurveyQuestionModel, ORMSurveyResponseAnswerModel ) {
@@ -207,7 +208,7 @@ module.exports = function( sequelize, ORMSurveyResponseModel, ORMSurveyModel, OR
 
       getSurveyQuestionsAndAnswers: function( surveyResponse ) {
           var deferred = Q.defer()
-            , chainer  = new Sequelize.Utils.QueryChainer;
+            , chainer  = new Sequelize.Utils.QueryChainer();
 
           chainer.add(
               SurveyQuestionModel.findAll({
@@ -297,7 +298,7 @@ module.exports = function( sequelize, ORMSurveyResponseModel, ORMSurveyModel, OR
       updatePointsAwarded: function( surveyQuestions ) {
           var deferred = Q.defer()
             , cntUnrated = 0
-            , chainer  = new Sequelize.Utils.QueryChainer;
+            , chainer  = new Sequelize.Utils.QueryChainer();
 
           var l = surveyQuestions.length, sq, sa;
 

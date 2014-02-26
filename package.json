@@ -25,6 +25,9 @@
     "clevertech",
     "backend"
   ],
+  "bundledDeps": [
+    "clever-orm"
+  ],
   "main": "module.js",
   "devDependencies": {
     "chai": "^1.9.0",
