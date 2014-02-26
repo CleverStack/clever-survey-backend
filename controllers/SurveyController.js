@@ -11,7 +11,7 @@ module.exports = function( SurveyService ) {
     },
     {
         listAction: function() {
-            var accId = this.req.user.account.id;
+            var accId = this.req.user.id;
 
             SurveyService
             .getSurveyList( accId )
@@ -20,7 +20,7 @@ module.exports = function( SurveyService ) {
         },
 
         getAction: function() {
-            var accId  = this.req.user.account.id,
+            var accId  = this.req.user.id,
                 srvId  = this.req.params.id;
 
             SurveyService
@@ -30,14 +30,14 @@ module.exports = function( SurveyService ) {
         },
 
         postAction: function() {
-            var accId  = this.req.user.account.id
+            var accId  = this.req.user.id
               , data    = this.req.body;
 
             if ( data.id ) {
                 this.putAction();
                 return;
             };
-            
+
             data['accId'] = accId;
 
             SurveyService
@@ -49,7 +49,7 @@ module.exports = function( SurveyService ) {
         putAction: function() {
             var srvId  = this.req.params.id
               , userId = this.req.user.id
-              , accId  = this.req.user.account.id
+              , accId  = this.req.user.id
               , data   = this.req.body;
 
             data['userId'] = userId;
@@ -62,7 +62,7 @@ module.exports = function( SurveyService ) {
         },
 
         deleteAction: function() {
-            var accId = this.req.user.account.id,
+            var accId = this.req.user.id,
                 srvId = this.req.params.id;
 
             SurveyService
