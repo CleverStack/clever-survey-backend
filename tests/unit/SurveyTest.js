@@ -4,11 +4,11 @@ var testEnv = require ( 'utils' ).testEnv();
 var expect = require ( 'chai' ).expect
   , Service;
 
-describe ( 'controllers.ModulesSurveyController', function () {
+describe ( 'controllers.SurveyController', function () {
     var ctrl;
 
     beforeEach ( function ( done ) {
-        testEnv ( function ( ModulesSurveyController, ModulesSurveyService ) {
+        testEnv ( function ( SurveyController, SurveyService ) {
             var req = {
                 params: { action: 'fakeAction'},
                 method: 'GET',
@@ -18,9 +18,9 @@ describe ( 'controllers.ModulesSurveyController', function () {
                 json: function () {}
             };
             var next = function () {};
-            ctrl = new ModulesSurveyController ( req, res, next );
+            ctrl = new SurveyController ( req, res, next );
 
-            Service = ModulesSurveyService;
+            Service = SurveyService;
             Service.create({
                 name: 'ModulesSurvey 1'
             })
@@ -103,7 +103,7 @@ describe ( 'controllers.ModulesSurveyController', function () {
         it ( 'should call .send() with valid arguments', function ( done ) {
             ctrl.send = function ( data ) {
                 expect( data ).to.eql ( {
-                    message: 'Hello from customAction inside ModulesSurveyController'
+                    message: 'Hello from customAction inside SurveyController'
                 } );
 
                 done ();
