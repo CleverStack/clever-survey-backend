@@ -22,7 +22,14 @@ describe ( 'controllers.SurveyController', function () {
 
             Service = SurveyService;
             Service.create({
-                name: 'ModulesSurvey 1'
+                name: 'ModulesSurvey 1',
+                surveyQuestions: [
+                  id: 1,
+                  title: 'My Question',
+                  values: [
+                    { test: 'yup' }
+                  ]
+                ]
             })
             .then(function ( examples ) {
                 done();

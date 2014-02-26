@@ -1,0 +1,23 @@
+{
+  "clever-orm": {
+    "models": [
+      "Survey",
+      "SurveyQuestion",
+      "SurveyResponse"
+      "SurveyResponseAnswer"
+    ],
+    "modelAssociations": {
+      "Survey": {
+          "belongsTo" : ["User"],
+          "hasMany"   : ["SurveyQuestion"]
+      },
+      "SurveyQuestion" : {
+          "belongsTo" : ["Survey", "User"],
+          "hasMany" : ["SurveyResponse"]
+      },
+      "SurveyResponseAnswer" : {
+          "belongsTo": ["SurveyQuestion", "User"]
+      },
+    }
+  }
+}
