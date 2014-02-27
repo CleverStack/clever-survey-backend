@@ -48,7 +48,7 @@ function installORM ( step ) {
                 { reg: 'Database name'     , write: 'test_db\n' },
                 { reg: 'Database dialect'  , write: '\n' },
                 { reg: 'Database port'     , write: '3306\n' },
-                { reg: 'Database host'     , write: '127.0.0.1\n' },
+                { reg: 'Database host'     , write: '127.0.0.1\n' }
             ];
 
         if ( str.match( 'ing' ) !== null ) {
@@ -130,32 +130,27 @@ function configFiles( step ) {
       , ormFile = path.join( __dirname, '../', prName, 'backend', 'modules', 'clever-orm', 'config', 'default.json' )
       , comFile = path.join( __dirname, '../', prName, 'backend', 'config', 'test.json' )
       , ormData = {
-        "clever-orm": {
-            "db": {
-                "username": "travis",
-                "password": "",
-                "database": "test_db",
-                "options": {
-                    "host": "127.0.0.1",
-                    "dialect": "mysql",
-                    "port": 3306
+            "clever-orm": {
+                "db": {
+                    "username": "travis",
+                    "password": "",
+                    "database": "test_db",
+                    "options": {
+                        "host": "127.0.0.1",
+                        "dialect": "mysql",
+                        "port": 3306
+                        }
+                    },
+                    "modelAssociations": {
+                        "SurveyModel": {
+                            "hasMany"   : [ "SurveyQuestionModel" ]
+                        },
+                        "SurveyQuestionModel" : {
+                            "belongsTo" : [ "SurveyModel" ]
+                        }
+                    }
                 }
-            },
-            "modelAssociations": {
-              "Survey": {
-                  "belongsTo" : ["User"],
-                  "hasMany"   : ["SurveyQuestion"]
-              },
-              "SurveyQuestion" : {
-                  "belongsTo" : ["Survey", "User"],
-                  "hasMany" : ["SurveyResponse"]
-              },
-              "SurveyResponseAnswer" : {
-                  "belongsTo": ["SurveyQuestion", "User"]
-              }
             }
-            }
-        }
       , comData = {
             "environmentName": "TEST",
             "memcacheHost": "127.0.0.1:11211",
@@ -171,7 +166,7 @@ function configFiles( step ) {
                     }
                 }
             }
-        }
+        };
 
     console.log( 'step #' + step + ' - create and update config files - start\n' );
 
@@ -231,6 +226,6 @@ createProject ( 1 )
     .then ( installAuth )
     .then ( copyModule )
     .then ( bundled )
-    .fail ( function ( err ) {
+    .fail ( function (err) {
         console.log( err );
     });

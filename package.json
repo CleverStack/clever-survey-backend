@@ -1,37 +1,30 @@
 {
-  "name": "clever-survey",
-  "version": "0.0.1",
-  "dependencies": {
-    "underscore": "^1.6.0",
-    "q": "^1.0.0",
-    "shortid": "^2.0.0"
-  },
-  "author": {
-    "name": "Clevertech",
-    "email": "info@clevertech.biz",
-    "web": "http://www.clevertech.biz"
-  },
-  "collaborators": [
-    "Adnan Ibrisimbegovic <adnan@clevertech.biz>",
-    "Dimitrios Ioakimidis <dimitrios@clevertech.biz>",
-    "Daniel Young <daniel@clevertech.biz>"
-  ],
-  "description": "Clevertech Survey Module for CleverStack",
-  "keywords": [
-    "cleverstack",
-    "cleverstack-module",
-    "cleverstack-backend",
-    "survey",
-    "clevertech",
-    "backend"
-  ],
-  "bundledDeps": [
-    "clever-orm",
-    "clever-auth"
-  ],
-  "main": "module.js",
-  "devDependencies": {
-    "chai": "^1.9.0",
-    "mocha": "^1.17.1"
-  }
+    "name": "clever-survey",
+    "version": "0.0.1",
+    "dependencies": {
+      "underscore": "^1.6.0",
+      "q": "^1.0.0",
+      "shortid": "^2.0.0"
+    },
+    "author": {
+        "name": "Clevertech",
+        "email": "info@clevertech.biz",
+        "web": "http://www.clevertech.biz"
+    },
+    "main": "module.js",
+    "description": "",
+    "devDependencies": {
+      "chai": "^1.9.0",
+      "mocha": "^1.17.1",
+      "sinon": "*"
+    },
+    "keywords": [
+      "cleverstack",
+      "cleverstack-module",
+      "cleverstack-backend",
+      "clevertech"
+    ],
+    "bundledDependencies": [
+      "clever-orm"
+    ]
 }

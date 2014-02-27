@@ -1,87 +1,76 @@
-/**
- * @doc module
- * @name survey.controllers:ModulesSurveyController
- * @description
- * Sets up a controller within CleverStack
- */
-module.exports = function( SurveyService ) {
-    return (require('classes').Controller).extend(
-    {
-        service: SurveyService
-    },
-    {
-        listAction: function() {
-            var accId = this.req.user.id;
+module.exports = function ( SurveyService ) {
 
-            SurveyService
-            .getSurveyList( accId )
-            .then( this.proxy( 'handleServiceMessage' ) )
-            .fail( this.proxy( 'handleException' ) );
+    return (require ( 'classes' ).Controller).extend (
+        {
+            service: SurveyService
         },
+        /* @Prototype */
+        {
 
-        getAction: function() {
-            var accId  = this.req.user.id,
-                srvId  = this.req.params.id;
+            listAction: function () {
 
-            SurveyService
-            .getSurveyById( accId, srvId )
-            .then( this.proxy( 'handleServiceMessage' ) )
-            .fail( this.proxy( 'handleException' ) );
-        },
+                SurveyService
+                    .getSurveyList ()
+                    .then ( this.proxy ( 'handleServiceMessage' ) )
+                    .fail ( this.proxy ( 'handleException' ) );
+            }, 
 
-        postAction: function() {
-            var accId  = this.req.user.id
-              , data    = this.req.body;
+            getAction: function () {
+                var srvId = this.req.params.id;
 
-            if ( data.id ) {
-                this.putAction();
-                return;
-            };
+                SurveyService
+                    .getSurveyById ( srvId )
+                    .then ( this.proxy ( 'handleServiceMessage' ) )
+                    .fail ( this.proxy ( 'handleException' ) );
+            }, 
 
-            data['accId'] = accId;
+            postAction: function () {
+                var data = this.req.body;
 
-            SurveyService
-            .createSurvey( data )
-            .then( this.proxy( 'handleServiceMessage' ) )
-            .fail( this.proxy( 'handleException' ) );
-        },
+                if ( data.id ) {
+                    this.putAction ();
+                    return;
+                }
 
-        putAction: function() {
-            var srvId  = this.req.params.id
-              , userId = this.req.user.id
-              , accId  = this.req.user.id
-              , data   = this.req.body;
+                SurveyService
+                    .createSurvey ( data )
+                    .then ( this.proxy ( 'handleServiceMessage' ) )
+                    .fail ( this.proxy ( 'handleException' ) );
 
-            data['userId'] = userId;
-            data['accId']  = accId;
+            }, 
 
-            SurveyService
-            .updateSurvey( data, srvId )
-            .then( this.proxy( 'handleServiceMessage' ) )
-            .fail( this.proxy( 'handleException' ) );
-        },
+            putAction: function () {
+                var srvId = this.req.params.id
+                  , data = this.req.body;
 
-        deleteAction: function() {
-            var accId = this.req.user.id,
-                srvId = this.req.params.id;
+                SurveyService
+                    .updateSurvey ( data, srvId )
+                    .then ( this.proxy ( 'handleServiceMessage' ) )
+                    .fail ( this.proxy ( 'handleException' ) );
+            }, 
 
-            SurveyService
-            .removeSurvey( accId, srvId )
-            .then( this.proxy( 'handleServiceMessage' ) )
-            .fail( this.proxy( 'handleException' ) );
-        },
+            deleteAction: function () {
+                var srvId = this.req.params.id;
 
-        handleServiceMessage : function(obj){
-            if ( !obj ) {
-                this.send({}, 200);
-            };
+                SurveyService
+                    .removeSurvey ( srvId )
+                    .then ( this.proxy ( 'handleServiceMessage' ) )
+                    .fail ( this.proxy ( 'handleException' ) );
+            },
 
-            if ( obj.statuscode ) {
-                this.send( obj.message, obj.statuscode );
-                return;
-            };
+            handleServiceMessage: function ( obj ) {
 
-            this.send( obj, 200 );
-        }
-    });
-}
+                if ( !obj ) {
+                    this.send ( {}, 200 );
+                }
+
+                if ( obj.statuscode ) {
+                    this.send ( obj.message, obj.statuscode );
+                    return;
+                }
+
+                this.send ( obj, 200 );
+            }
+
+        } );
+};
