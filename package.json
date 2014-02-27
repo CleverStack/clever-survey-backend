@@ -1,30 +1,30 @@
 {
-    "name": "clever-survey",
-    "version": "0.0.1",
-    "dependencies": {
-      "underscore": "^1.6.0",
-      "q": "^1.0.0",
-      "shortid": "^2.0.0"
-    },
-    "author": {
-        "name": "Clevertech",
-        "email": "info@clevertech.biz",
-        "web": "http://www.clevertech.biz"
-    },
-    "main": "module.js",
-    "description": "",
-    "devDependencies": {
-      "chai": "^1.9.0",
-      "mocha": "^1.17.1",
-      "sinon": "*"
-    },
-    "keywords": [
-      "cleverstack",
-      "cleverstack-module",
-      "cleverstack-backend",
-      "clevertech"
-    ],
-    "bundledDependencies": [
-      "clever-orm"
-    ]
+  "name": "clever-survey",
+  "version": "0.0.2",
+  "dependencies": {
+    "underscore": "^1.6.0",
+    "q": "^1.0.0",
+    "shortid": "^2.0.0"
+  },
+  "author": {
+    "name": "Clevertech",
+    "email": "info@clevertech.biz",
+    "web": "http://www.clevertech.biz"
+  },
+  "main": "module.js",
+  "description": "",
+  "devDependencies": {
+    "chai": "^1.9.0",
+    "mocha": "^1.17.1",
+    "sinon": "*"
+  },
+  "keywords": [
+    "cleverstack",
+    "cleverstack-module",
+    "cleverstack-backend",
+    "clevertech"
+  ],
+  "bundledDependencies": [
+    "clever-orm"
+  ]
 }
