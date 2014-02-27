@@ -130,25 +130,30 @@ function configFiles( step ) {
       , ormFile = path.join( __dirname, '../', prName, 'backend', 'modules', 'clever-orm', 'config', 'default.json' )
       , comFile = path.join( __dirname, '../', prName, 'backend', 'config', 'test.json' )
       , ormData = {
-            "clever-orm": {
-                "db": {
-                    "username": "travis",
-                    "password": "",
-                    "database": "test_db",
-                    "options": {
-                        "host": "127.0.0.1",
-                        "dialect": "mysql",
-                        "port": 3306
-                        },
-                    },
-                    "modelAssociations": {
-                        "UserModel": {
-                            "hasMany"   : [ "FileModel" ]
-                        },
-                        "FileModel" : {
-                            "belongsTo" : [ "UserModel" ]
-                        }
-                    }
+        "clever-orm": {
+            "db": {
+                "username": "travis",
+                "password": "",
+                "database": "test_db",
+                "options": {
+                    "host": "127.0.0.1",
+                    "dialect": "mysql",
+                    "port": 3306
+                }
+            },
+            "modelAssociations": {
+              "Survey": {
+                  "belongsTo" : ["User"],
+                  "hasMany"   : ["SurveyQuestion"]
+              },
+              "SurveyQuestion" : {
+                  "belongsTo" : ["Survey", "User"],
+                  "hasMany" : ["SurveyResponse"]
+              },
+              "SurveyResponseAnswer" : {
+                  "belongsTo": ["SurveyQuestion", "User"]
+              }
+            }
             }
         }
       , comData = {
@@ -166,7 +171,7 @@ function configFiles( step ) {
                     }
                 }
             }
-        };
+        }
 
     console.log( 'step #' + step + ' - create and update config files - start\n' );
 
